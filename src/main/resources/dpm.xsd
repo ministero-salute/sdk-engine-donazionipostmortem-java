@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://be.dpm.mds.it" 
+	targetNamespace="http://be.dpm.mds.it" 
+	elementFormDefault="qualified">
+
+	<xs:element name="dpmInvioXmlRequest">
+		<xs:complexType>
+			<xs:sequence>     
+				<xs:element name="dpmInvioMetaDati" type="tns:dpmInvioType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="dpmInvioXmlResponse">
+		<xs:complexType>
+			<xs:sequence>     
+				<xs:element name="dpmStatoContainer" type="tns:dpmStatoContainerType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="dpmVerificaStatoXmlRequest">
+		<xs:complexType>
+			<xs:sequence>     
+				<xs:element name="dpmVerificaStatoMetaDati" type="tns:dpmVerificaStatoType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="dpmVerificaStatoXmlResponse">
+		<xs:complexType>
+			<xs:sequence>     
+				<xs:element name="dpmStatoContainer" type="tns:dpmStatoContainerType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="dpmOut">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="numeroAtto" type="tns:numeroAttoType" minOccurs="0" maxOccurs="1" />
+				<xs:element name="identificativoSoggettoAlimentante" type="tns:identificativoSoggettoAlimentanteType" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="tipoEsito" type="tns:esitoType" minOccurs="1"  maxOccurs="1"/>
+				<xs:element name="dettagli" type="tns:dettaglioType" minOccurs="0"  maxOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="dpm">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="donatore" type="tns:anagrafePersonaType" minOccurs="0" maxOccurs="1" />
+				<xs:element name="disponenti" type="tns:anagrafePersonaType" minOccurs="1" maxOccurs="2" />
+				<xs:element name="fiduciari" type="tns:anagrafePersonaType"	minOccurs="0" maxOccurs="2" />
+				<xs:element name="soggettoAlimentante" type="tns:soggettoAlimentanteType" minOccurs="1" maxOccurs="1" />
+				<xs:element name="identificativoSoggettoAlimentante" type="tns:identificativoSoggettoAlimentanteType" minOccurs="1" maxOccurs="1" />
+				<xs:element name="dataSottoscrizione" type="tns:calendarType" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="tipoAtto" type="tns:tipoAttoType" minOccurs="1"  maxOccurs="1"/>
+				<xs:element name="formatoAtto" type="tns:formatoAttoType" minOccurs="1"  maxOccurs="1"/>
+				<xs:element name="tipoDisponente" type="tns:tipoDisponenteType" minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="donatoreMinorenne" type="tns:yesNoType" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:complexType name="dpmInvioType">
+		<xs:sequence>     
+			<xs:element name="identificativoDatSoggettoAlimentante" type="tns:identificativoSoggettoAlimentanteType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="soggettoAlimentante" type="tns:soggettoAlimentanteType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="tipoAtto" type="tns:tipoAttoType" minOccurs="1"  maxOccurs="1"/>
+			<xs:element name="allegati" type="tns:allegatiType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="dpmVerificaStatoType">
+		<xs:sequence>     
+			<xs:element name="identificativoSoggettoAlimentante" type="tns:identificativoSoggettoAlimentanteType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="soggettoAlimentante" type="tns:soggettoAlimentanteType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="allegatiType">
+		<xs:sequence>
+			<xs:element name="allegato" type="tns:allegatoType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="allegatoType">
+		<xs:sequence>
+			<xs:element name="cidRef" type="xs:string" minOccurs="1" maxOccurs = "1"/>
+			<xs:element name="tipo" minOccurs="1" maxOccurs = "1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="01"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nome" type="xs:string" minOccurs="1" maxOccurs = "1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="dpmStatoContainerType">
+		<xs:sequence>     
+			<xs:sequence>
+				<xs:element name="numeroAtto" type="xs:string" nillable="true" minOccurs="0"  maxOccurs="1"/>
+				<xs:element name="identificativoDatSoggettoAlimentante" type="tns:identificativoSoggettoAlimentanteType" minOccurs="1"  maxOccurs="1"/>
+				<xs:element name="tipoEsito" type="tns:esitoType" minOccurs="1"  maxOccurs="1"/>				
+				<xs:element name="dataEmissioneRicevuta" type="tns:calendarType" minOccurs="0"  maxOccurs="1"/>				
+			</xs:sequence>			
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="dettaglioType">
+		<xs:sequence>
+			<xs:element name="linea" type="xs:string" minOccurs="0" maxOccurs="unbounded" /> 
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="esitoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PRESA_IN_CARICO" />
+			<xs:enumeration value="IN_LAVORAZIONE" />
+			<xs:enumeration value="EVASA_OK" />
+			<xs:enumeration value="EVASA_CON_ERRORI" />
+			<xs:enumeration value="EVASA_XML_ERRATO" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="anagrafePersonaType">
+		<xs:sequence>
+			<xs:element name="luogoNascita" type="tns:anagrafeGeoType"	minOccurs="1" maxOccurs="1" />
+			<xs:element name="luogoResidenza" type="tns:anagrafeGeoType" minOccurs="1" maxOccurs="1" />
+			<xs:element name="nome" type="tns:cognomeNometype" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cognome" type="tns:cognomeNometype" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codiceFiscale" type="tns:codiceFiscaleType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="dataNascita" type="tns:calendarType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="indirizzoResidenza" type="tns:indirizzoResidenzaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="capResidenza" type="tns:capResidenzaType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="email" type="tns:emailType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>		
+		<xs:attribute name="consensoEmail" type="tns:yesNoType"/>
+	</xs:complexType>
+
+	<xs:complexType name="anagrafeGeoType">
+		<xs:sequence>
+			<xs:element name="codiceNazione" type="tns:codiceNazioneType"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codiceRegione" type="tns:codiceRegioneType"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codiceProvincia" type="tns:codiceProvinciaType"  minOccurs="1" maxOccurs="1"/>
+			<xs:element name="codiceComune" type="tns:codiceComuneType"  minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="soggettoAlimentanteType">
+		<xs:sequence>
+			<xs:element name="regioneSoggettoAlimentante" type="tns:codiceRegioneType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cap" type="tns:capResidenzaType" minOccurs="1" maxOccurs="1" />
+			<xs:element name="codiceSoggettoAlimentante" type="tns:codiceStrutturaType" minOccurs="1" maxOccurs="1" />
+			<xs:element name="indirizzo" type="tns:indirizzoResidenzaType" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="calendarType">
+		<xs:restriction base="xs:date">
+			<xs:pattern
+				value="[1|2][0-9]{3}-([0][0-9]|[1][0-2])-([0|1|2][0-9]|[3][0-1])">
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="identificativoSoggettoAlimentanteType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+			<xs:pattern value="[a-zA-Z0-9\.\\/\[\]\(\)_-]{1,150}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="numeroAttoType">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="|DPM-[0-9]{3}-[0-9]{3}-[0-9]{3}-[0-9]{3}-[0-9]{1}">
+			</xs:pattern>
+		</xs:restriction>		
+	</xs:simpleType>
+	
+	<xs:simpleType name="cognomeNometype">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="codiceFiscaleType">
+		<xs:restriction base="xs:string">
+			<xs:length value="16"/>
+			<xs:pattern value="([A-Z][AEIOU][AEIOUX]|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}([\dLMNP-V]{2}([A-EHLMPR-T]([04LQ][1-9MNP-V]|[15MR][\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|([02468LNQSU][048LQU]|[13579MPRTV][26NS])B[26NS][9V])([A-MZ][1-9MNP-V][\dLMNP-V]{2}|[A-M][0L]([1-9MNP-V][\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="indirizzoResidenzaType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="capResidenzaType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="emailType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+			<xs:pattern 
+				value="[^@]+@[^\.]+\..+">
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="codiceComuneType">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="[0-9]{6}">
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="codiceProvinciaType">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="[0-9]{3}">
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="codiceRegioneType">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="[0-9]{3}">
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="codiceNazioneType">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="[A-Z]{2}">
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="codiceStrutturaType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="6"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType	name="checkSumMD5Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-f0-9]{32}"></xs:pattern>
+		</xs:restriction>				
+	</xs:simpleType>
+	
+	<xs:simpleType name="yesNoType">
+	   <xs:restriction base="xs:string">
+	      <xs:enumeration value="SI"/>
+	      <xs:enumeration value="NO"/>
+	   </xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="tipoAttoType">
+	   <xs:restriction base="xs:string">
+	      <xs:enumeration value="MANIFESTAZIONE_CONSENSO"/>
+	      <xs:enumeration value="REVOCA_CONSENSO"/>
+	   </xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="formatoAttoType">
+	   <xs:restriction base="xs:string">
+	      <xs:enumeration value="FORMA_SCRITTA"/>
+	      <xs:enumeration value="FORMA_AUDIO_VIDEO"/>
+	   </xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="tipoDisponenteType">
+	   <xs:restriction base="xs:string">
+	      <xs:enumeration value="GENITORE"/>
+	      <xs:enumeration value="TUTORE_SOGGETTI_AFFIDATARI"/>
+	   </xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>
