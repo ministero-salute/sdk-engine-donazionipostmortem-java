@@ -482,5 +482,90 @@ Il naming del file, se non modificata la politica di rolling (impostazioni) sarÃ
 
 **SDK \_DPM.log**
 
-## mantainer:
+# **4. Installazione e avvio**
+
+Gli step di installazione dell'SDK possono essere sintetizzati nei seguenti passaggi:
+- clonare da git sdk-engine-donazionipostmortem-java
+- clonare da git tutti gli artifatti di dipendenze
+- buildare e installare le dipendenzer
+
+## ***4.1 Scaricare repository e dipendenze***
+
+Clonare dal git sdk-engine-donazionipostmortem-java e tutti gli artifatti di dipendenze:
+
+- sdk-engine-donazionipostmortem-java
+  - git clone https://github.com/ministero-salute/sdk-engine-donazionipostmortem-java.git
+
+- sdk-al-donazionipostmortem-java
+  - git clone https://github.com/ministero-salute/sdk-al-donazionipostmortem-java.git
+
+- sdk-lib-al-java
+  - git clone https://github.com/ministero-salute/sdk-lib-al-java.git
+
+- sdk-lib-apigateway-java
+  - git clone https://github.com/ministero-salute/sdk-lib-apigateway-java.git
+
+- sdk-lib-connettoremds-java
+  - https://github.com/ministero-salute/sdk-lib-connettoremds-java.git
+
+- sdk-lib-crypto 
+  - git clone https://github.com/ministero-salute/sdk-lib-crypto.git
+  
+- sdk-lib-downloader-anagrafiche-client
+  - git clone https://github.com/ministero-salute/sdk-lib-downloader-anagrafiche-client.git
+
+- sdk-lib-gestoreanagrafiche-java
+  - git clone https://github.com/ministero-salute/sdk-lib-gestoreanagrafiche-java.git
+  
+- sdk-lib-gestoreesiti-java
+  - git clone https://github.com/ministero-salute/sdk-lib-gestoreesiti-java.git
+
+- sdk-lib-gestorefile-java
+  - git clone https://github.com/ministero-salute/sdk-lib-gestorefile-java.git
+
+- sdk-lib-interconnessione
+  - git clone https://github.com/ministero-salute/sdk-lib-interconnessione.git
+  
+- sdk-lib-regole-java
+  - git clone https://github.com/ministero-salute/sdk-lib-regole-java.git
+  
+## ***4.2 Buildare e installare le dipendenze***
+
+Per poter installare correttamente le dipendenze occorre accedere a ogni cartella precedetemente scaricata ed eseguire una Maven build inserendo clean install nei Goals e utilizzando la jdk 11.
+
+(NOTA: sdk-lib-downloader-anagrafiche-client necessita della jdk 8)
+
+Per poter eseguire la build: 
+build system maven,
+comando mvn clean package per il microservizio,
+comando mvn clean install per le dipendenze
+
+Esempio:
+Accedere alla cartella -> cd sdk-engine-donazionipostmortem-java
+Build -> mvn clean package
+
+Esempio dipendenze
+Accedere alla cartella -> cd sdk-lib-gestoreesiti-java
+Build -> mvn clean install
+
+Per eseguire l'installazione Ã¨ necessario prendere il jar generato dal build system e copiarlo in una cartella, successivamente all'interno della root folder ( / su Linux mentre C:\ su Windows) creare la cartella sdk e tutte le sottocartelle e i file necessari:
+- db
+- dir
+- esiti 
+- log
+- progressivo
+- properties
+- regole
+- run
+- templates_bkp
+- xmloutputn
+
+## ***4.3 Avvio***
+
+Per eseguire l'avvio del microservizio:
+
+java -jar <jar prodotto dalla clean package>
+
+
+## mantainerr:
  Accenture SpA until January 2026
