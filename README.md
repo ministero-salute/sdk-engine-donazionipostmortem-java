@@ -4,7 +4,7 @@
 
 Il Ministero della Salute (MdS) metterà a disposizione degli Enti, da cui riceve dati, applicazioni SDK specifiche per flusso logico e tenoclogie applicative (Java, PHP e C#) per verifica preventiva (in casa Ente) della qualità del dato prodotto.
 
-![](img/Aspose.Words.70978c07-bd08-414e-a817-6117f6d4a28a.002.png)
+![](img/img4.png)
 
 Nel presente documento sono fornite la struttura e la sintassi dei tracciati previsti dalla soluzione SDK per avviare il proprio processo elaborativo, nonché i relativi schemi xsd di convalida e i controlli di merito sulla qualità, completezza e coerenza dei dati.
 
@@ -21,7 +21,7 @@ In generale, la soluzione SDK è costituita da 2 diversi moduli applicativi (Acc
 
 La figura che segue descrive la soluzione funzionale ed i relativi benefici attesi.
 
-![](img/Aspose.Words.70978c07-bd08-414e-a817-6117f6d4a28a.003.png)
+![](img/img2.png)
 
 ## ***1.2 Acronimi***
 
@@ -484,88 +484,19 @@ Il naming del file, se non modificata la politica di rolling (impostazioni) sar�
 
 # **4. Installazione e avvio**
 
-Gli step di installazione dell'SDK possono essere sintetizzati nei seguenti passaggi:
-- clonare da git sdk-engine-donazionipostmortem-java
-- clonare da git tutti gli artifatti di dipendenze
-- buildare e installare le dipendenzer
+Per l'installazione e l'avvio dell'engine seguire la documentazione tecnica dettagliata disponibile all'url [`INSTALL.md`](https://github.com/ministero-salute/sdk-utilities-regole-properties/blob/main/INSTALL.md).
 
-## ***4.1 Scaricare repository e dipendenze***
+## 📝 Licenza
+Questo progetto è rilasciato sotto licenza BSD 3-Clause License così come definita [BSD 3-Clause License](./LICENSE).
 
-Clonare dal git sdk-engine-donazionipostmortem-java e tutti gli artifatti di dipendenze:
+## 🤝 Contributi
+I contributi sono benvenuti. Si prega di consultare il file [`CONTRIBUTING.md`](CONTRIBUTING.md) per le linee guida su come contribuire al progetto.
 
-- sdk-engine-donazionipostmortem-java
-  - git clone https://github.com/ministero-salute/sdk-engine-donazionipostmortem-java.git
+## 📞 Contatti
+Per ulteriori informazioni, contattare:
 
-- sdk-al-donazionipostmortem-java
-  - git clone https://github.com/ministero-salute/sdk-al-donazionipostmortem-java.git
+- **Service Desk - Ministero della Salute**: servicedesk.mds@medilifegroupspa.com
+- **Amministrazione titolare**: [Ministero della Salute](https://www.salute.gov.it)
 
-- sdk-lib-al-java
-  - git clone https://github.com/ministero-salute/sdk-lib-al-java.git
-
-- sdk-lib-apigateway-java
-  - git clone https://github.com/ministero-salute/sdk-lib-apigateway-java.git
-
-- sdk-lib-connettoremds-java
-  - https://github.com/ministero-salute/sdk-lib-connettoremds-java.git
-
-- sdk-lib-crypto 
-  - git clone https://github.com/ministero-salute/sdk-lib-crypto.git
-  
-- sdk-lib-downloader-anagrafiche-client
-  - git clone https://github.com/ministero-salute/sdk-lib-downloader-anagrafiche-client.git
-
-- sdk-lib-gestoreanagrafiche-java
-  - git clone https://github.com/ministero-salute/sdk-lib-gestoreanagrafiche-java.git
-  
-- sdk-lib-gestoreesiti-java
-  - git clone https://github.com/ministero-salute/sdk-lib-gestoreesiti-java.git
-
-- sdk-lib-gestorefile-java
-  - git clone https://github.com/ministero-salute/sdk-lib-gestorefile-java.git
-
-- sdk-lib-interconnessione
-  - git clone https://github.com/ministero-salute/sdk-lib-interconnessione.git
-  
-- sdk-lib-regole-java
-  - git clone https://github.com/ministero-salute/sdk-lib-regole-java.git
-  
-## ***4.2 Buildare e installare le dipendenze***
-
-Per poter installare correttamente le dipendenze occorre accedere a ogni cartella precedetemente scaricata ed eseguire una Maven build inserendo clean install nei Goals e utilizzando la jdk 11.
-
-(NOTA: sdk-lib-downloader-anagrafiche-client necessita della jdk 8)
-
-Per poter eseguire la build: 
-build system maven,
-comando mvn clean package per il microservizio,
-comando mvn clean install per le dipendenze
-
-Esempio:
-Accedere alla cartella -> cd sdk-engine-donazionipostmortem-java
-Build -> mvn clean package
-
-Esempio dipendenze
-Accedere alla cartella -> cd sdk-lib-gestoreesiti-java
-Build -> mvn clean install
-
-Per eseguire l'installazione è necessario prendere il jar generato dal build system e copiarlo in una cartella, successivamente all'interno della root folder ( / su Linux mentre C:\ su Windows) creare la cartella sdk e tutte le sottocartelle e i file necessari:
-- db
-- dir
-- esiti 
-- log
-- progressivo
-- properties
-- regole
-- run
-- templates_bkp
-- xmloutputn
-
-## ***4.3 Avvio***
-
-Per eseguire l'avvio del microservizio:
-
-java -jar <jar prodotto dalla clean package>
-
-
-## mantainerr:
+## mantainer:
  Accenture SpA until January 2026
